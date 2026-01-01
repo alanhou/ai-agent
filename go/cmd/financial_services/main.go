@@ -8,7 +8,7 @@ import (
 	"io"
 	"os"
 
-	"agents-go/internal/scenarios/financial_services"
+	"agents-go/go/internal/scenarios/financial_services"
 
 	"github.com/cloudwego/eino/schema"
 	"github.com/joho/godotenv"

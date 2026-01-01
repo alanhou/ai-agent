@@ -8,7 +8,7 @@ import (
 	"io"
 	"os"
 
-	"agents-go/internal/scenarios/supply_chain"
+	"agents-go/go/internal/scenarios/supply_chain"
 
 	"github.com/cloudwego/eino/schema"
 	"github.com/joho/godotenv"

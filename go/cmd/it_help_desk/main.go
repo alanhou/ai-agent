@@ -8,7 +8,7 @@ import (
 	"io"
 	"os"
 
-	"agents-go/internal/scenarios/it_help_desk"
+	"agents-go/go/internal/scenarios/it_help_desk"
 
 	"github.com/cloudwego/eino/schema"
 	"github.com/joho/godotenv"

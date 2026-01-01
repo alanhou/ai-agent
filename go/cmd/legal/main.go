@@ -8,7 +8,7 @@ import (
 	"io"
 	"os"
 
-	"agents-go/internal/scenarios/legal"
+	"agents-go/go/internal/scenarios/legal"
 
 	"github.com/cloudwego/eino/schema"
 	"github.com/joho/godotenv"
