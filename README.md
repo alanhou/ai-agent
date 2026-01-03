@@ -23,6 +23,9 @@
 * [AI 智能体从入门到进阶再到落地完整教程](https://alanhou.org/ai-agents-complete-course/)
 * [第一章 智能体导论](https://alanhou.org/chapter-1-introduction-to-agents/)
 * [第二章 设计智能体系统](https://alanhou.org/chapter-2-designing-agent-systems/)
+* [第三章 智能体系统的用户体验设计](https://alanhou.org/chapter-3-user-experience-design-for-agentic-systems/)
+* [第四章 工具使用](https://alanhou.org/chapter-4-tool-use/)
+
 
 ---
 

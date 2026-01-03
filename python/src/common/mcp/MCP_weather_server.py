@@ -1,102 +1,47 @@
 #!/usr/bin/env python3
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from typing import Dict, Any, List
-import uvicorn
+"""
+Weather MCP Server using FastMCP framework.
+Provides a 'get_weather' tool for retrieving weather information.
+"""
+from fastmcp import FastMCP
 
-# ─── MCP Schemas ────────────────────────────────────────────────────────────────
-class Message(BaseModel):
-    role: str
-    content: str
+# Create the MCP server
+mcp = FastMCP("Weather Server")
 
-class Payload(BaseModel):
-    model: str
-    inputs: List[Message]
-    # Optional other fields, e.g., options: Dict[str, Any]
+# Dummy temperature data (in a real implementation, call a weather API)
+DUMMY_TEMPS = {
+    "nyc": {"temp": "58°F", "condition": "Partly cloudy"},
+    "new york": {"temp": "58°F", "condition": "Partly cloudy"},
+    "london": {"temp": "48°F", "condition": "Rainy"},
+    "san francisco": {"temp": "62°F", "condition": "Sunny"},
+    "beijing": {"temp": "45°F", "condition": "Hazy"},
+    "tokyo": {"temp": "55°F", "condition": "Clear"},
+    "paris": {"temp": "50°F", "condition": "Overcast"},
+    "sydney": {"temp": "75°F", "condition": "Sunny"},
+}
 
-class Context(BaseModel):
-    conversation_id: str
-    request_id: str
-    # You can add metadata here if needed
 
-class MCPRequest(BaseModel):
-    context: Context
-    payload: Payload
-
-class Choice(BaseModel):
-    text: str
-
-class PayloadResponse(BaseModel):
-    choices: List[Choice]
-
-class ContextResponse(BaseModel):
-    conversation_id: str
-    request_id: str
-    tokens_used: int
-    # Add latency_ms or other fields if needed
-
-class MCPResponse(BaseModel):
-    context: ContextResponse
-    payload: PayloadResponse
-
-# ─── FastAPI App ────────────────────────────────────────────────────────────────
-app = FastAPI(title="Weather MCP Server")
-
-@app.post("/mcp", response_model=MCPResponse)
-async def handle_mcp(request: MCPRequest):
+@mcp.tool
+def get_weather(city: str) -> str:
     """
-    Receives an MCPRequest at /mcp, expects a user question about the weather,
-    and returns an MCPResponse with dummy data.
+    Get the current weather for a specified city.
+    
+    Args:
+        city: The name of the city to get weather for (e.g., "London", "NYC", "Beijing")
+    
+    Returns:
+        A string describing the current weather conditions.
     """
-    context = request.context
-    payload = request.payload
+    city_lower = city.lower().strip()
+    
+    if city_lower in DUMMY_TEMPS:
+        weather = DUMMY_TEMPS[city_lower]
+        return f"The current weather in {city.title()} is {weather['temp']} and {weather['condition'].lower()}."
+    else:
+        # Default response for unknown cities
+        return f"The current weather in {city.title()} is approximately 65°F with clear skies."
 
-    # Extract user’s question (e.g., “what is the weather in nyc?”)
-    user_msg = None
-    for msg in payload.inputs:
-        if msg.role == "user":
-            user_msg = msg.content
-            break
-
-    if user_msg is None:
-        raise HTTPException(status_code=400, detail="No user message in payload.")
-
-    # Very naive parsing: look for a city name after "weather in "
-    city = "unknown"
-    lowered = user_msg.lower()
-    if "weather in" in lowered:
-        try:
-            city = lowered.split("weather in")[1].strip().rstrip("?").strip()
-        except Exception:
-            city = "unknown"
-
-    # Dummy temperature data; in a real implementation, call a real API
-    dummy_temps = {
-        "nyc": "58°F",
-        "london": "48°F",
-        "san francisco": "62°F"
-    }
-    temp = dummy_temps.get(city, "65°F (approx)")
-
-    # Build response context
-    response_context = {
-        "conversation_id": context.conversation_id,
-        "request_id": context.request_id,
-        "tokens_used": 0  # set to 0 or mock value; depends on your billing model
-    }
-
-    # Build response payload
-    response_payload = {
-        "choices": [
-            { "text": f"The current temperature in {city.title()} is {temp}." }
-        ]
-    }
-
-    return {
-        "context": response_context,
-        "payload": response_payload
-    }
 
 if __name__ == "__main__":
-    # Run with: python3 weather_server.py
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    # Run using HTTP transport on port 8000
+    mcp.run(transport="streamable-http", host="0.0.0.0", port=8000)
