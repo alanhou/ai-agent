@@ -26,6 +26,7 @@
 * [第三章 智能体系统的用户体验设计](https://alanhou.org/chapter-3-user-experience-design-for-agentic-systems/)
 * [第四章 工具使用](https://alanhou.org/chapter-4-tool-use/)
 * [第五章 智能体编排](https://alanhou.org/chapter-5-orchestration/)
+* [第六章 知识与记忆](https://alanhou.org/chapter-6-knowledge-and-memory/)
 
 
 ---
