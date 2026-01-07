@@ -27,6 +27,7 @@
 * [第四章 工具使用](https://alanhou.org/chapter-4-tool-use/)
 * [第五章 智能体编排](https://alanhou.org/chapter-5-orchestration/)
 * [第六章 知识与记忆](https://alanhou.org/chapter-6-knowledge-and-memory/)
+* [第七章 智能体系统中的学习](https://alanhou.org/chapter-7-learning-in-agentic-systems/)
 
 
 ---

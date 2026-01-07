@@ -1,0 +1,10 @@
+Action: search[dairy free and apple variety pack of chips]
+Observation:
+[Back to Search]
+Page 1 (Total results: 50)
+[Next >]
+[B07HRFJWP8]
+Enjoy Life Foods Soft Baked Ovals, Breakfast Bars, Nut Free Bars, Soy Free, Dairy Free, Non GMO, Gluten Free, Vegan, Variety Pack, 4 Boxes (20 Bars Total)
+$100.0
+Action: think[The first item is not what I want.]
+STATUS: FAIL
