@@ -28,6 +28,7 @@
 * [第五章 智能体编排](https://alanhou.org/chapter-5-orchestration/)
 * [第六章 知识与记忆](https://alanhou.org/chapter-6-knowledge-and-memory/)
 * [第七章 智能体系统中的学习](https://alanhou.org/chapter-7-learning-in-agentic-systems/)
+* [第八章 从单智能体到多智能体](https://alanhou.org/chapter-8-from-one-agent-to-many/)
 
 
 ---
@@ -69,23 +70,23 @@
 1. **克隆仓库**
 
    ```bash
-   git clone https://github.com/your-org/agents.git
-   cd agents
+   git clone https://github.com/alanhou/ai-agent.git
+   cd ai-agent
    ```
 
 2. **创建 Conda（或 Virtualenv）环境**
 
    ```bash
    # 使用 Conda
-   conda env create -f environment.yml
+   conda env create -f python/environment.yml
    conda activate agents
    ```
 
 3. **安装 Python 依赖项（以及可编辑的 “src” 包）**
 
    ```bash
-   pip install -r requirements.txt
-   pip install -e src
+   pip install -r python/requirements.txt
+   pip install -e python/src
    ```
 
    * `pip install -e src` 确保 `src/` 下的模块（例如 `common.*`，`frameworks.*`）是可导入的。
@@ -100,11 +101,11 @@
 
 ```bash
 # 从仓库根目录：
-cd src/common/scenarios/ecommerce_customer_support/evaluation
+cd python/src/common/scenarios/ecommerce_customer_support/evaluation
 
-python -m src.common.evaluation.batch_evaluation \
-  --dataset src/common/evaluation/scenarios/ecommerce_customer_support_evaluation_set.json \
-  --graph_py src/frameworks/langgraph_agents/ecommerce_customer_support/customer_support_agent.py
+python -m python.src.common.evaluation.batch_evaluation \
+  --dataset python/src/common/evaluation/scenarios/ecommerce_customer_support_evaluation_set.json \
+  --graph_py python/src/frameworks/langgraph_agents/ecommerce_customer_support/customer_support_agent.py
 ```
 
 ### 2. 启动单个框架 Agent
@@ -154,7 +155,7 @@ PYCODE
 以下是所有内容的组织方式概览：
 
 ```
-agents/
+ai-agent/
 ├── README.md
 ├── scenarios/                 
 │   ├── ecommerce_customer_support.jsonl
@@ -182,7 +183,7 @@ agents/
 
 ```bash
 # 从仓库根目录：
-cd src/frameworks/langchain/scenarios/ecommerce_customer_support
+cd python/src/frameworks/langchain/scenarios/ecommerce_customer_support
 
 # 示例用法：
 python - << 'PYCODE'
@@ -202,7 +203,7 @@ PYCODE
 
 ```bash
 # 从仓库根目录：
-cd src/frameworks/langgraph/scenarios/ecommerce_customer_support
+cd python/src/frameworks/langgraph/scenarios/ecommerce_customer_support
 
 # 示例用法：
 python - << 'PYCODE'
@@ -237,7 +238,7 @@ PYCODE
 要运行完整的测试套件：
 
 ```bash
-cd /Users/your-user/dev/agents
+cd /Users/your-user/dev/ai-agent/python
 pytest -q
 ```
 
