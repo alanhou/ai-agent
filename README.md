@@ -29,6 +29,7 @@
 * [第六章 知识与记忆](https://alanhou.org/chapter-6-knowledge-and-memory/)
 * [第七章 智能体系统中的学习](https://alanhou.org/chapter-7-learning-in-agentic-systems/)
 * [第八章 从单智能体到多智能体](https://alanhou.org/chapter-8-from-one-agent-to-many/)
+* [第九章 验证与度量](https://alanhou.org/chapter-9-validation-and-measurement/)
 
 
 ---
